@@ -25,12 +25,12 @@ class GenericClient(ds.Client):
         if msg.author == self.user:                             # No reason to read my own messages
             return
 
-        if msg.content == '!helpme' or msg.content == '!h': # List all generic messages here
-            self.response = self.help_msg()
+        if msg.content == '!helpme' or msg.content == '!h':     # List all generic messages here
+            self.help_msg()
         else:
-            self.response = self.parse_msg(msg)
+            self.parse_msg(msg)
 
-        if self.response:                                           # If a message is in the queue send it out and clear queue
+        if self.response:               # If a message is in the queue send it out and clear queue
             await msg.channel.send(self.response)
             self.response = ''
 
@@ -38,11 +38,11 @@ class GenericClient(ds.Client):
         # Function : help_msg
         # Purpose  : Generic help message that will be output when needed
         # Inputs   : self - Generic Client class
-        return "There is no defined help for this bot at the moment"
+        self.response = "There is no defined help for this bot at the moment"
 
     def parse_msg(self, msg):
         # Function : parse_msg
-        # Purpose  : Respond to non generic messages that are directed towards the bot
+        # Purpose  : Respond to non-generic messages that are directed towards the bot
         # Inputs   : self - Generic Client class
         #            msg - message that was received
         return ''
